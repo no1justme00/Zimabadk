@@ -1,0 +1,8 @@
+{
+  "name": "Zimabadk Extensions",
+  "description": "Custom extensions for CloudStream including Zimabadk plugin",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/no1justme00/cloudstream-extensions/main/plugins.json"
+  ]
+}

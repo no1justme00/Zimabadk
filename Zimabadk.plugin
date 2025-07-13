@@ -1,0 +1,27 @@
+
+// Zimabadk.plugin - basic placeholder
+package com.cloudstreamplugins.zimabadk
+
+import com.lagradost.cloudstream3.*
+import com.lagradost.cloudstream3.utils.*
+
+class Zimabadk : MainAPI() {
+    override val name = "Zimabadk"
+    override val mainUrl = "https://www.zimabadk.com"
+    override val hasMainPage = true
+
+    override suspend fun getMainPage(page: Int, request: MainPageRequest): MainPageResponse {
+        val document = app.get(mainUrl).document
+        val shows = document.select("article").mapNotNull {
+            val title = it.select("h3").text()
+            val href = it.select("a").attr("href")
+            val image = it.select("img").attr("data-src")
+            if (title.isNotEmpty() && href.isNotEmpty())
+                newAnimeSearchResponse(title, href, TvType.Anime) {
+                    this.posterUrl = image
+                }
+            else null
+        }
+        return MainPageResponse(listOf(HomePageList("الأنمي", shows)))
+    }
+}
