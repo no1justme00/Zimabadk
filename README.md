@@ -1,2 +1,2 @@
-# Zimabadk
+# zimabadk
 Anime.movies.ona.ova
